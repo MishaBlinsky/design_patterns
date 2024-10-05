@@ -18,3 +18,11 @@ case language
     else
         puts "Nevermind"
 end
+
+# 3) Ask user for Ruby command and System command. Execute both of them.
+print "Enter Ruby command: "
+cmd_ruby = STDIN.gets.chomp
+puts eval(cmd_ruby)
+print "Enter OS command: "
+cmd_os = STDIN.gets.chomp
+puts `#{cmd_os}`
