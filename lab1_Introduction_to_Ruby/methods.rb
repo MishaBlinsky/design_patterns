@@ -39,4 +39,4 @@ def maxdigit(a)
 end
 maxdigit(123)
 
-# method 3 - [a lot of letters]
+# method 3 - find a product of a max number, that are not mutually prime to a given number and not divided by a min divider of a given number, and a sum of digits of a given number that are lesser than 5
