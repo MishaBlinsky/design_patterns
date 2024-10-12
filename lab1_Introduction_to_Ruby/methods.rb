@@ -16,8 +16,27 @@ def evnoncoprime_count(n)
     end
     return count
 end
-print(evnoncoprime_count(21),"\n")
+puts "#{evnoncoprime_count(21)}"
 
-# method 2 - find maximal digits of a number that are not divided by 3
+# method 2 - find maximal digit of a number that are not divided by 3
+
+def maxdigit(a)
+    b = -1
+    while a!=0
+        if (a%10)%3==0
+            a = a/10
+        elsif (a%10).abs > b
+            a,b = a/10, (a%10).abs
+        else
+            a = a/10
+        end
+    end
+    if b == -1
+        puts "none"
+    else
+        puts "#{b}"
+    end
+end
+maxdigit(123)
 
 # method 3 - [a lot of letters]
