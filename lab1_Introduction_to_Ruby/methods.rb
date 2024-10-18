@@ -40,3 +40,37 @@ end
 maxdigit(123)
 
 # method 3 - find a product of a max number, that are not mutually prime to a given number and not divided by a min divider of a given number, and a sum of digits of a given number that are lesser than 5
+
+def specprod(a)
+    mingivendiv = 2
+    while mingivendiv != a and a % mingivendiv != 0
+        mingivendiv += 1
+    end
+    maxnotprime = a
+    while maxnotprime != 0
+        if maxnotprime % mingivendiv != 0
+            if maxprimediv(maxnotprime,a) != 1
+                break
+            end
+        end
+        maxnotprime -= 1
+    end
+    if maxnotprime == 0
+        puts "oopsie - multiplication by zero"
+    else
+        digitsum = 0
+        while a != 0
+            digit = (a % 10).abs
+            if digit < 5
+                digitsum += digit
+            end
+            a = (a/10).to_i
+        end
+        if digitsum == 0
+            puts "oopsie - multiplication by zero"
+        else
+            puts "#{maxnotprime} * #{digitsum} = #{maxnotprime * digitsum}"
+        end
+    end
+end
+specprod(123)
