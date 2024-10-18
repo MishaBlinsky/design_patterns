@@ -23,13 +23,10 @@ puts "#{evnoncoprime_count(21)}"
 def maxdigit(a)
     b = -1
     while a!=0
-        if (a%10)%3==0
-            a = a/10
-        elsif (a%10).abs > b
-            a,b = a/10, (a%10).abs
-        else
-            a = a/10
+        if (a%10)%3!=0
+            b = (a%10).abs if (a%10).abs > b   
         end
+        a = a/10
     end
     if b == -1
         puts "none"
@@ -49,9 +46,7 @@ def specprod(a)
     maxnotprime = a
     while maxnotprime != 0
         if maxnotprime % mingivendiv != 0
-            if maxprimediv(maxnotprime,a) != 1
-                break
-            end
+            break if maxprimediv(maxnotprime,a) != 1
         end
         maxnotprime -= 1
     end
@@ -61,9 +56,7 @@ def specprod(a)
         digitsum = 0
         while a != 0
             digit = (a % 10).abs
-            if digit < 5
-                digitsum += digit
-            end
+            digitsum += digit if digit < 5
             a = (a/10).to_i
         end
         if digitsum == 0
