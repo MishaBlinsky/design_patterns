@@ -20,21 +20,17 @@ puts "#{even_not_coprime_count(21)}"
 
 # method 2 - find maximal digit of a number that are not divided by 3
 
-def maxdigit(a)
+def max_digit(a)
     b = -1
-    while a!=0
-        if (a%10)%3!=0
-            b = (a%10).abs if (a%10).abs > b   
+    while a! = 0
+        if (a % 10) % 3 != 0
+            b = (a % 10).abs if (a % 10).abs > b   
         end
-        a = a/10
+        a /= 10
     end
-    if b == -1
-        puts "none"
-    else
-        puts "#{b}"
-    end
+    return b
 end
-maxdigit(123)
+puts "#{max_digit(123)}"
 
 # method 3 - find a product of a max number, that are not mutually prime to a given number and not divided by a min divider of a given number, and a sum of digits of a given number that are lesser than 5
 
