@@ -2,7 +2,7 @@ class Student
     def initialize(last_name, first_name, patronymic, id = nil, phone = nil, telegram = nil, email = nil, git = nil)
         @last_name = last_name
         @first_name = first_name
-        @patronymic = patronimyc
+        @patronymic = patronymic
         @id = id
         @phone = phone
         @telegram = telegram
