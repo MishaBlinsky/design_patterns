@@ -9,6 +9,9 @@ class Student
         @email = email
         @git = git
     end
+    def to_s
+    "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic}, Phone: #{@phone}, Telegram: #{@telegram}, E-Mail: #{@email}, Git: #{@git}"
+    end
     def get_last_name
         @last_name
     end
