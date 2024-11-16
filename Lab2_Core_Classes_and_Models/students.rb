@@ -9,6 +9,7 @@ class Student
         self.telegram = telegram
         self.email = email
         self.git = git
+        validate
     end
     def to_s
         "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
@@ -71,5 +72,19 @@ class Student
     end
     def self.name_regex_valid?(name)
         name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
+    end
+    def git_valid?
+        !git.nil?
+    end
+    def contact_valid?
+        !phone.nil? || !telegram.nil? || !email.nil?
+    end
+    def validate
+        unless git_valid?
+            raise ArgumentError, "ID: #{id} - There must be Git-repository."
+        end
+        unless contact_valid?
+            raise ArgumentError, "ID: #{id} - There must be at least one contact (phone, telegram, email)."
+        end
     end
 end
