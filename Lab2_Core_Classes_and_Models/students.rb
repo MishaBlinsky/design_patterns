@@ -1,5 +1,5 @@
 class Student
-    attr_accessor :last_name, :first_name, :patronymic, :id, :phone, :telegram, :email, :git
+    attr_accessor :last_name, :first_name, :patronymic, :id
     def initialize(last_name, first_name, patronymic: nil, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
         self.last_name = last_name
         self.first_name = first_name
@@ -9,11 +9,19 @@ class Student
         self.telegram = telegram
         self.email = email
         self.git = git
-        validate
+        validate(phone, telegram, email, git)
+    end
+    def set_contacts(phone: nil, telegram: nil, email: nil, git: nil)
+        self.phone = phone if phone
+        self.telegram = telegram if telegram
+        self.email = email if email
+        self.git = git if git
     end
     def to_s
         "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
+    private
+    attr_writer :phone, :telegram, :email, :git
     def last_name=(last_name)
         if Student.name_regex_valid?(last_name)
             @last_name = last_name
@@ -73,17 +81,17 @@ class Student
     def self.name_regex_valid?(name)
         name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
     end
-    def git_valid?
+    def git_valid?(git)
         !git.nil?
     end
-    def contact_valid?
+    def contact_valid?(phone, telegram, email)
         !phone.nil? || !telegram.nil? || !email.nil?
     end
-    def validate
-        unless git_valid?
+    def validate(phone, telegram, email, git)
+        unless git_valid?(git)
             raise ArgumentError, "ID: #{id} - There must be Git-repository."
         end
-        unless contact_valid?
+        unless contact_valid?(phone, telegram, email)
             raise ArgumentError, "ID: #{id} - There must be at least one contact (phone, telegram, email)."
         end
     end
