@@ -27,6 +27,33 @@ class Student
     def to_s
         "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
+    def get_info
+        "#{get_last_name} #{get_initials} | Git: #{get_git || "not specified"} | #{get_pref_contact}"
+    end
+    def get_last_name
+        @last_name
+    end
+    def get_initials
+        if @patronymic
+            return "#{@first_name[0]}.#{@patronymic[0]}."
+        else
+            return "#{@first_name[0]}."
+        end
+    end
+    def get_git
+        @git
+    end
+    def get_pref_contact
+        if @phone
+            return "Phone: #{@phone}"
+        elsif @telegram
+            return "Telegram: #{@telegram}"
+        elsif @email
+            return "E-Mail: #{@email}"
+        else
+            return "Contact: not specified"
+        end
+    end
     def last_name=(last_name)
         if Student.name_regex_valid?(last_name)
             @last_name = last_name
