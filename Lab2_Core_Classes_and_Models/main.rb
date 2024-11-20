@@ -9,6 +9,7 @@ begin
     student1.set_contacts(phone: "+34445556677", telegram: "@ourspider")
     puts "Updated student info:"
     puts student1
+    puts student2.validate
 rescue ArgumentError => e
     puts e.message
 end
