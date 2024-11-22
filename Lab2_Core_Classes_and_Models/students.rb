@@ -1,5 +1,6 @@
-class Student
-    attr_reader :last_name, :first_name, :patronymic, :id, :phone, :telegram, :email, :git
+require_relative 'students_base'
+class Student < Student_base
+    attr_reader :last_name, :first_name, :patronymic, :phone, :telegram, :email
     def initialize(last_name, first_name, patronymic: nil, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
         self.last_name = last_name
         self.first_name = first_name
@@ -9,6 +10,8 @@ class Student
         self.telegram = telegram
         self.email = email
         self.git = git
+        contact = get_pref_contact
+        super(id: id, git: git, contact: contact)
     end
     def set_contacts(phone: nil, telegram: nil, email: nil, git: nil)
         self.phone = phone if phone
@@ -16,19 +19,11 @@ class Student
         self.email = email if email
         self.git = git if git
     end
-    def validate
-        unless Student.git_valid?(self.git)
-            raise ArgumentError, "ID: #{id} - There must be Git-repository."
-        end
-        unless Student.contact_valid?(self.phone, self.telegram, self.email)
-            raise ArgumentError, "ID: #{id} - There must be at least one contact (phone, telegram, email)."
-        end
-    end
     def to_s
         "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
     def get_info
-        "#{get_last_name} #{get_initials} | Git: #{get_git || "not specified"} | #{get_pref_contact}"
+        "#{get_last_name} #{get_initials} | Git: #{get_git || "not specified"} | Contact: #{get_pref_contact}"
     end
     def get_last_name
         @last_name
@@ -45,13 +40,13 @@ class Student
     end
     def get_pref_contact
         if @phone
-            return "Phone: #{@phone}"
+            return "(Phone) #{@phone}"
         elsif @telegram
-            return "Telegram: #{@telegram}"
+            return "(Telegram) #{@telegram}"
         elsif @email
-            return "E-Mail: #{@email}"
+            return "(E-Mail) #{@email}"
         else
-            return "Contact: not specified"
+            return nil
         end
     end
     def last_name=(last_name)
@@ -76,7 +71,7 @@ class Student
         end
     end
     def id=(id)
-        if id.is_a?(Integer)
+        if id.nil? || id.is_a?(Integer)
             @id = id
         else
             raise ArgumentError, "ID must be a number: #{id}"
@@ -96,12 +91,6 @@ class Student
     end
     def self.git_regex_valid?(git)
         git.match?(/^[a-zA-Z][a-zA-Z0-9-]{0,38}$/)
-    end
-    def self.git_valid?(git)
-        !git.nil?
-    end
-    def self.contact_valid?(phone, telegram, email)
-        !phone.nil? || !telegram.nil? || !email.nil?
     end
     private
     def phone=(phone)
