@@ -13,6 +13,7 @@ class Student_base
         raise ArgumentError, "ID: #{id} - There must be at least one contact (phone, telegram, email)."
     end
   end
+  private
   def self.has_git?(git)
     !git.nil?
   end
