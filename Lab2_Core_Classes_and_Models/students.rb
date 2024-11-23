@@ -77,21 +77,6 @@ class Student < Student_base
             raise ArgumentError, "ID must be a number: #{id}"
         end
     end
-    def self.name_regex_valid?(name)
-        name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
-    end
-    def self.phone_regex_valid?(phone)
-        phone.match?(/^\+?[1-9][0-9]{7,14}$/)
-    end
-    def self.telegram_regex_valid?(telegram)
-        telegram.match?(/\A@[\w\d_]+\z/)
-    end
-    def self.email_regex_valid?(email)
-        email.match?(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i)
-    end
-    def self.git_regex_valid?(git)
-        git.match?(/^[a-zA-Z][a-zA-Z0-9-]{0,38}$/)
-    end
     private
     def phone=(phone)
         if phone.nil? || Student.phone_regex_valid?(phone)
@@ -120,5 +105,20 @@ class Student < Student_base
         else
             raise ArgumentError, "Incorrect git format: #{git}"
         end
+    end
+    def self.name_regex_valid?(name)
+        name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
+    end
+    def self.phone_regex_valid?(phone)
+        phone.match?(/^\+?[1-9][0-9]{7,14}$/)
+    end
+    def self.telegram_regex_valid?(telegram)
+        telegram.match?(/\A@[\w\d_]+\z/)
+    end
+    def self.email_regex_valid?(email)
+        email.match?(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i)
+    end
+    def self.git_regex_valid?(git)
+        git.match?(/^[a-zA-Z][a-zA-Z0-9-]{0,38}$/)
     end
 end
