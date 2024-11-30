@@ -6,12 +6,12 @@ class Student_base
     @contact = contact
   end
   def validate
-    has_git?() & has_contact?()
+    has_git? & has_contact?
   end
-  def has_git?()
+  def has_git?
     !@git.nil?
   end
-  def has_contact?()
+  def has_contact?
     !@contact.nil?
   end
 end
