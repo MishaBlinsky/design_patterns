@@ -23,10 +23,7 @@ class Student < Student_base
         "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
     def get_info
-        "#{get_last_name} #{get_initials} | Git: #{get_git || "not specified"} | Contact: #{get_pref_contact}"
-    end
-    def get_last_name
-        @last_name
+        "#{@last_name} #{get_initials} | Git: #{@git} | Contact: #{get_pref_contact}"
     end
     def get_initials
         if @patronymic
@@ -34,9 +31,6 @@ class Student < Student_base
         else
             return "#{@first_name[0]}."
         end
-    end
-    def get_git
-        @git
     end
     def get_pref_contact
         if @phone
@@ -77,6 +71,21 @@ class Student < Student_base
             raise ArgumentError, "ID must be a number: #{id}"
         end
     end
+    def self.name_regex_valid?(name)
+        name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
+    end
+    def self.phone_regex_valid?(phone)
+        phone.match?(/^\+?[1-9][0-9]{7,14}$/)
+    end
+    def self.telegram_regex_valid?(telegram)
+        telegram.match?(/\A@[\w\d_]+\z/)
+    end
+    def self.email_regex_valid?(email)
+        email.match?(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i)
+    end
+    def self.git_regex_valid?(git)
+        git.match?(/^[a-zA-Z][a-zA-Z0-9-]{0,38}$/)
+    end
     private
     def phone=(phone)
         if phone.nil? || Student.phone_regex_valid?(phone)
@@ -105,20 +114,5 @@ class Student < Student_base
         else
             raise ArgumentError, "Incorrect git format: #{git}"
         end
-    end
-    def self.name_regex_valid?(name)
-        name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
-    end
-    def self.phone_regex_valid?(phone)
-        phone.match?(/^\+?[1-9][0-9]{7,14}$/)
-    end
-    def self.telegram_regex_valid?(telegram)
-        telegram.match?(/\A@[\w\d_]+\z/)
-    end
-    def self.email_regex_valid?(email)
-        email.match?(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i)
-    end
-    def self.git_regex_valid?(git)
-        git.match?(/^[a-zA-Z][a-zA-Z0-9-]{0,38}$/)
     end
 end

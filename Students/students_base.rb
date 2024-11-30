@@ -6,18 +6,12 @@ class Student_base
     @contact = contact
   end
   def validate
-    unless Student_base.has_git?(@git)
-        raise ArgumentError, "ID: #{id} - There must be Git-repository."
-    end
-    unless Student_base.has_contact?(@contact)
-        raise ArgumentError, "ID: #{id} - There must be at least one contact (phone, telegram, email)."
-    end
+    has_git?() & has_contact?()
   end
-  private
-  def self.has_git?(git)
-    !git.nil?
+  def has_git?()
+    !@git.nil?
   end
-  def self.has_contact?(contact)
-    !contact.nil?
+  def has_contact?()
+    !@contact.nil?
   end
 end

@@ -16,6 +16,7 @@ begin
     puts student_short1.last_name_initials
     puts student_short1.git
     puts student_short1.contact
+    puts student_short1.validate
 rescue ArgumentError => e
     puts e.message
 end
