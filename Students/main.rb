@@ -11,12 +11,16 @@ begin
     student1.set_contacts(phone: "+34445556677", telegram: "@ourspider")
     puts "Updated student info:"
     puts student1
-    puts student2.get_info
-    student_short1 = Student_short.new(student3.get_info, 3)
+    student_short1 = Student_short.by_student(student2)
     puts student_short1.last_name_initials
     puts student_short1.git
     puts student_short1.contact
-    puts student_short1.validate
+    puts student_short1.validate   
+    student_short2 = Student_short.by_string(student3.get_info, id: 3)
+    puts student_short2.last_name_initials
+    puts student_short2.git
+    puts student_short2.contact
+    puts student_short2.validate
 rescue ArgumentError => e
     puts e.message
 end

@@ -6,42 +6,26 @@ class Student < Student_base
         self.first_name = first_name
         self.patronymic = patronymic
         self.id = id
-        self.phone = phone
-        self.telegram = telegram
-        self.email = email
-        self.git = git
-        contact = get_pref_contact
-        super(id: id, git: git, contact: contact)
+        self.set_contacts(phone: phone, telegram: telegram, email: email)
+        super(id: id, git: git, contact: "#{phone || telegram || email || nil}")
     end
     def set_contacts(phone: nil, telegram: nil, email: nil, git: nil)
         self.phone = phone if phone
         self.telegram = telegram if telegram
         self.email = email if email
         self.git = git if git
+        @contact = "#{@phone || @telegram || @email || nil}"
     end
     def to_s
-        "ID: #{@id}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
+        "ID: #{@id || '-'}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
     def get_info
-        "#{@last_name} #{get_initials} | Git: #{@git} | Contact: #{get_pref_contact}"
+        "#{last_name_initials} | Git: #{@git} | Contact: #{@contact}"
     end
-    def get_initials
-        if @patronymic
-            return "#{@first_name[0]}.#{@patronymic[0]}."
-        else
-            return "#{@first_name[0]}."
-        end
-    end
-    def get_pref_contact
-        if @phone
-            return "(Phone) #{@phone}"
-        elsif @telegram
-            return "(Telegram) #{@telegram}"
-        elsif @email
-            return "(E-Mail) #{@email}"
-        else
-            return nil
-        end
+    def last_name_initials
+        name = "#{@last_name} #{@first_name[0]}."
+        name += "#{@patronymic[0]}." if @patronymic
+        return name
     end
     def last_name=(last_name)
         if Student.name_regex_valid?(last_name)
