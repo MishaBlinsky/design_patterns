@@ -27,6 +27,17 @@ class Student < Student_base
         name += "#{@patronymic[0]}." if @patronymic
         return name
     end
+    def ==(anOther)
+        last_name_check = @last_name == anOther.last_name
+        first_name_check = @first_name == anOther.first_name
+        patronymic_check = @patronymic == anOther.patronymic
+        id_check = @id == anOther.id
+        phone_check = @phone == anOther.phone
+        telegram_check = @telegram == anOther.telegram
+        email_check = @email == anOther.email
+        git_check = @git == anOther.git
+        last_name_check & first_name_check & patronymic_check & id_check & phone_check & telegram_check & email_check & git_check          
+    end
     def last_name=(last_name)
         if Student.name_regex_valid?(last_name)
             @last_name = last_name
