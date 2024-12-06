@@ -24,7 +24,6 @@ begin
     studentFaker = Student.new("Zubenko", "Mihail", patronymic: "Petrovich", id: 2, telegram: "@mafioznik", git: "mafia-git")
     puts student2 == studentFaker
     puts student1 == student2
-    puts student1.inspect
 rescue ArgumentError => e
     puts e.message
 end
