@@ -5,9 +5,7 @@ def sort_indexes_min(arr)
 end
 # 1.16 Given an integer array. Print elements between first max and second max elements.
 def elements_between_1st_2nd_max(arr)
-  max1, max2 = arr.max(2)
-  id_max1, id_max2 = arr.index(max1), arr.index(max2)
-  id_max1, id_max2 = id_max2, id_max1 if id_max1 > id_max2
+  id_max1, id_max2 = arr.max(2).map {|e| arr.index(e)}.sort
   arr[id_max1 + 1...id_max2]
 end
 # 1.28 Given an integer array. Print elements between first and last occurances of max element.
