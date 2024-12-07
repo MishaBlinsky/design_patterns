@@ -29,23 +29,38 @@ def prime_divs_array(n)
   end
   arr_output
 end
-def input_array()
-  puts "Enter elements seperated by SPACE:"
-  gets.chomp.split.map {|x| x.to_i}
-end
-puts "1) Print indexes of elements in order that makes array of elements in decresing order.
+puts "1) Enter via keyboard\n2) Read from a file\nChoose input method:"
+input_method = gets.chomp.to_i
+if input_method == 1 || input_method == 2
+  case input_method
+  when 1
+    puts "Enter elements seperated by SPACE:"
+    arr = gets.chomp.split.map {|x| x.to_i}
+  when 2
+    begin
+      file = File.open("/Users/eduardagejkin/Desktop/ruby/l3_Blocks/text.txt", "r")
+      arr = file.read.split.map {|x| x.to_i}
+      puts "File loaded successfully"
+    rescue Errno::ENOENT => error
+      puts "Error: #{error}"
+      exit
+    ensure
+        file.close if file
+    end
+  end
+  puts "1) Print indexes of elements in order that makes array of elements in decresing order.
 2) Print elements between first max and second max elements.\n3) Print elements between first and last occurances of max element.
 4) Print minimal even element.\n5) Print array of prime dividers of an integer number.\nChoose a task:"
-case gets.chomp.to_i
-when 1
-  puts "Result: #{sort_indexes_min(input_array())}"
-when 2
-  puts "Result: #{elements_between_1st_2nd_max(input_array())}"
-when 3
-  puts "Result: #{elements_between_fst_lst_max(input_array())}"
-when 4
-  puts "Result: #{min_even_element(input_array())}"
-when 5
-  puts "Enter a number (>=2):"
-  puts "Result: #{prime_divs_array(gets.chomp.to_i)}"
+  case gets.chomp.to_i
+  when 1
+    puts "Result: #{sort_indexes_min(arr)}"
+  when 2
+    puts "Result: #{elements_between_1st_2nd_max(arr)}"
+  when 3
+    puts "Result: #{elements_between_fst_lst_max(arr)}"
+  when 4
+    puts "Result: #{min_even_element(arr)}"
+  when 5
+    puts "Result: #{prime_divs_array(arr[0])}"
+  end
 end
