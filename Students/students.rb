@@ -14,7 +14,7 @@ class Student < Student_base
         self.phone = phone if phone
         self.telegram = telegram if telegram
         self.email = email if email
-        @contact = "#{@phone || @telegram || @email || nil}"
+        self.contact = "#{@phone || @telegram || @email || nil}"
     end
     def to_s
         "ID: #{@id || '-'}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
@@ -105,5 +105,8 @@ class Student < Student_base
         else
             raise ArgumentError, "Incorrect e-mail format: #{email}"
         end
+    end
+    def contact=(contact)
+        @contact = contact
     end
 end
