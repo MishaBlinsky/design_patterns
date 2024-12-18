@@ -1,12 +1,13 @@
 require_relative 'students_base'
+require 'date'
 class Student < Student_base
-    attr_reader :last_name, :first_name, :patronymic, :phone, :telegram, :email
-    def initialize(last_name, first_name, patronymic: nil, id: nil, phone: nil, telegram: nil, email: nil, git: nil)
+    attr_reader :last_name, :first_name, :patronymic, :phone, :telegram, :email, :date
+    include Comparable
+    def initialize(last_name, first_name, patronymic: nil, id: nil, phone: nil, telegram: nil, email: nil, git: nil, date: nil)
         self.last_name = last_name
         self.first_name = first_name
         self.patronymic = patronymic
-        self.id = id
-        self.git = git
+        self.date = date
         self.set_contacts(phone: phone, telegram: telegram, email: email)
         super(id: id, git: git, contact: "#{phone || telegram || email || nil}")
     end
@@ -17,7 +18,7 @@ class Student < Student_base
         self.contact = "#{@phone || @telegram || @email || nil}"
     end
     def to_s
-        "ID: #{@id || '-'}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
+        "ID: #{@id || '-'}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Birth Date: #{@date || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
     def get_info
         "#{last_name_initials} | Git: #{self.git} | Contact: #{self.contact}"
@@ -27,12 +28,8 @@ class Student < Student_base
         name += "#{@patronymic[0]}." if @patronymic
         return name
     end
-    def ==(anOther)
-        phone_check = ( @phone == anOther.phone ) & !( !@phone & !anOther.phone )
-        telegram_check = ( @telegram == anOther.telegram ) & !( !@telegram & !anOther.telegram )
-        email_check = ( @email == anOther.email ) & !( !@email & !anOther.email )
-        git_check = ( @git == anOther.git ) & !( !@git & !anOther.git )
-        phone_check | telegram_check | email_check | git_check         
+    def <=>(anOther)
+      self.date <=> anOther.date
     end
     def last_name=(last_name)
         if Student.name_regex_valid?(last_name)
@@ -69,6 +66,13 @@ class Student < Student_base
             raise ArgumentError, "Incorrect git format: #{git}"
         end
     end
+    def date=(date)
+        if date.nil? || Student.date_regex_valid?(date)
+            @date = date
+        else
+            raise ArgumentError, "Incorrect date format #{date}"  
+        end 
+    end
     def self.name_regex_valid?(name)
         name.match?(/\A[А-Яа-яЁёA-Za-z]+\z/)
     end
@@ -83,6 +87,9 @@ class Student < Student_base
     end
     def self.git_regex_valid?(git)
         git.match?(/^[a-zA-Z][a-zA-Z0-9-]{0,38}$/)
+    end
+    def self.date_regex_valid?(date)
+        date.match?(/\d{4}-\d{2}-\d{2}/) && Date.strptime(date, '%Y-%m-%d') rescue false
     end
     private
     def phone=(phone)
