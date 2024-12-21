@@ -47,7 +47,8 @@ class HTML_Tree
       else
         tag = Tag.new(name: tag_name, attributes: attributes_parsed, content: tag_content)
       end
-      tags << taghtml.sub!(full_tag_text, '').strip
+      tags << tag
+      html.sub!(full_tag_text, '').strip
     end
     return tags
   end
