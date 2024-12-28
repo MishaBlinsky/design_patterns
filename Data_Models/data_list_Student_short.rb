@@ -1,6 +1,6 @@
 require 'data_list'
 require 'data_table'
-require 'Student/student_short'
+require 'student_short'
 class DataListStudentShort < DataList
   def get_names
     ["last_name_initials", "contact", "git"]
