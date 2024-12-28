@@ -1,4 +1,6 @@
+require_relative 'deep_copy'
 class DataTable
+  include DeepCopy
   def initialize(data)
     @data = data
   end
@@ -17,16 +19,5 @@ class DataTable
   def data=(data)
     raise ArgumentError, "Incorrect data" unless data.is_a?(Array) && data.all? {|r| r.is_a?(Array)}
     @data = data.map {|r| r.dup}
-  end
-  def deep_copy(obj)
-    if obj.is_a?(Array)
-      obj.map {|e| deep_copy(e)}
-    elsif obj.is_a?(Hash)
-      obj.transform_values {|val| deep_dup(val)}
-    elsif obj.respond_to?(:dup)
-      obj.dup
-    else
-      obj
-    end
   end
 end

@@ -1,12 +1,13 @@
-require 'data_list'
-require 'data_table'
-require 'student_short'
+require_relative 'data_list'
+require_relative 'student_short'
 class DataListStudentShort < DataList
-  def get_names
-    ["last_name_initials", "contact", "git"]
+  def initialize(data)
+    super(data)
   end
-  def get_data
-    data4table = @data.map.with_index {|student, index| [index + 1, student.last_name_initials, student.contact, student.git]}
-    DataTable.new(data4table)
+  def get_names
+    ["id", "last_name_initials", "git", "contact"]
+  end
+  def data_row(index)
+    [index + 1, @data[index].last_name_initials, @data[index].git, @data[index].contact]
   end
 end

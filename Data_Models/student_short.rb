@@ -1,4 +1,4 @@
-require_relative 'students_base'
+require_relative 'student_base'
 class Student_short < Student_base
   attr_reader :last_name_initials
   private_class_method :new
@@ -14,6 +14,9 @@ class Student_short < Student_base
     if student.is_a?(Student)
       Student_short.by_string(student.get_info, id: student.id)
     end
+  end
+  def to_s
+    "ID: #{self.id || '-'} | Last Name Initials: #{self.last_name_initials} | Git: #{self.git} | Contact: #{self.contact}"
   end
   private
   def self.parse_info(info_str)
