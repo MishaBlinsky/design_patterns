@@ -1,0 +1,46 @@
+[
+  {
+    "id": 2,
+    "first_name": "Kirisame",
+    "last_name": "Marisa",
+    "patronymic": null,
+    "date": "1970-01-01",
+    "phone": null,
+    "telegram": "@magician",
+    "email": null,
+    "git": "test2"
+  },
+  {
+    "id": 4,
+    "first_name": "Morales",
+    "last_name": "Miles",
+    "patronymic": null,
+    "date": "2002-02-20",
+    "phone": null,
+    "telegram": "@spooder",
+    "email": null,
+    "git": "abas-git"
+  },
+  {
+    "id": 1,
+    "first_name": "Hakurei",
+    "last_name": "Reimu",
+    "patronymic": null,
+    "date": "1970-01-01",
+    "phone": null,
+    "telegram": "@gimmemoney",
+    "email": null,
+    "git": "test1"
+  },
+  {
+    "id": 3,
+    "first_name": "Izayoi",
+    "last_name": "Sakuya",
+    "patronymic": null,
+    "date": "1970-01-01",
+    "phone": null,
+    "telegram": "@mistr00s",
+    "email": null,
+    "git": "test3"
+  }
+]

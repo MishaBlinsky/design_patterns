@@ -1,0 +1,46 @@
+---
+- :id: 2
+  :first_name: Kirisame
+  :last_name: Marisa
+  :patronymic:
+  :date: '1970-01-01'
+  :phone:
+  :telegram: "@magician"
+  :email:
+  :git: test2
+- :id: 4
+  :first_name: Morales
+  :last_name: Miles
+  :patronymic:
+  :date: '2002-02-20'
+  :phone:
+  :telegram: "@spooder"
+  :email:
+  :git: abas-git
+- :id: 5
+  :first_name: Morales
+  :last_name: Miles
+  :patronymic:
+  :date: '2002-02-20'
+  :phone:
+  :telegram: "@spooder"
+  :email:
+  :git: abas-git
+- :id: 1
+  :first_name: Hakurei
+  :last_name: Reimu
+  :patronymic:
+  :date: '1970-01-01'
+  :phone:
+  :telegram: "@gimmemoney"
+  :email:
+  :git: test1
+- :id: 3
+  :first_name: Izayoi
+  :last_name: Sakuya
+  :patronymic:
+  :date: '1970-01-01'
+  :phone:
+  :telegram: "@mistr00s"
+  :email:
+  :git: test3
