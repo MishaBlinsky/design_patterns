@@ -1,5 +1,5 @@
 require_relative 'data_list'
-require_relative 'student_short'
+require_relative '../Student/student_short'
 class DataListStudentShort < DataList
   def initialize(data)
     super(data)

@@ -1,6 +1,6 @@
 require 'yaml'
-require_relative '../student.rb'
-require_relative '../data_list_Student_short.rb'
+require_relative '../Student/student.rb'
+require_relative '../Data_List/data_list_Student_short.rb'
 class Students_list_YAML
   def initialize(file_path)
     self.file_path = file_path

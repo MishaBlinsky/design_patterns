@@ -1,4 +1,3 @@
-require_relative 'student_short'
 require_relative 'data_list_Student_short'
 studshort1 = Student_short.by_string("Morales M. | Git: abas-git | Contact: +76665554433", id: 1)
 studshort2 = Student_short.by_string("Zubenko M.P. | Git: mafia-git | Contact: @mafioznik", id: 2)

@@ -1,5 +1,4 @@
 require_relative 'data_table'
-require_relative 'deep_copy'
 class DataList
   include DeepCopy
   def initialize(data)
