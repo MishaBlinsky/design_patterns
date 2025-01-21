@@ -7,8 +7,7 @@ class Students_list_JSON
     self.students = read_from_file
   end
   def read_from_file
-    return [] unless File.exist?(self.file_path)
-    JSON.parse(File.read(self.file_path), symbolize_names: true).map { |data| Student.new(**data) }
+    File.exist?(file_path) ? JSON.parse(File.read(self.file_path), symbolize_names: true).map { |data| Student.new(**data) } : []
   end
   def write_to_file
     File.write(self.file_path, JSON.pretty_generate(self.students.map { |student| student.to_hash }))
@@ -36,7 +35,6 @@ class Students_list_JSON
   end
   def delete_student(id)
     @students.reject! { |student| student.id == id }
-    write_to_file
   end
   def get_student_short_count
     self.students.size

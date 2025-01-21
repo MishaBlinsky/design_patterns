@@ -7,8 +7,7 @@ class Students_list_YAML
     self.students = read_from_file
   end
   def read_from_file
-    return [] unless File.exist?(self.file_path)
-    YAML.safe_load(File.read(self.file_path), permitted_classes: [Date, Symbol]).map { |data| Student.new(**data) }
+    File.exist?(file_path) ? YAML.safe_load(File.read(self.file_path), permitted_classes: [Date, Symbol]).map { |data| Student.new(**data) } : []
   end
   def write_to_file
     File.write(self.file_path, self.students.map { |student| student.to_hash }.to_yaml)
@@ -36,7 +35,6 @@ class Students_list_YAML
   end
   def delete_student(id)
     @students.reject! { |student| student.id == id }
-    write_to_file
   end
   def get_student_short_count
     self.students.size
