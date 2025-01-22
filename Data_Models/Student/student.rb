@@ -1,5 +1,5 @@
-require_relative 'student_base'
 require 'date'
+require_relative 'student_base.rb'
 class Student < Student_base
     attr_reader :last_name, :first_name, :patronymic, :phone, :telegram, :email, :date
     include Comparable

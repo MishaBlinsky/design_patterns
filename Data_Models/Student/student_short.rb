@@ -1,4 +1,4 @@
-require_relative 'student_base'
+require_relative 'student_base.rb'
 class Student_short < Student_base
   attr_reader :last_name_initials
   private_class_method :new
