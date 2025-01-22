@@ -5,7 +5,7 @@ class DataList
     self.data, self.selected = data.freeze, []
   end
   def select(n)
-    element = data[n]
+    element = self.data[n]
     self.selected << element unless self.selected.include?(element)
   end
   def get_selected
