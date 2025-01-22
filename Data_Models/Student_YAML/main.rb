@@ -1,6 +1,6 @@
 require_relative 'student_list_YAML.rb'
-stud1 = Student.new( "id": 7, "first_name": "Morales", "last_name": "Miles", "date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
-stud2 = Student.new( "id": 8, "first_name": "Morales", "last_name": "Miles", "date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
+stud1 = Student.new( "id": 7, "first_name": "Morales", "last_name": "Miles", "birth_date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
+stud2 = Student.new( "id": 8, "first_name": "Morales", "last_name": "Miles", "birth_date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
 yaml_test = Students_list_YAML.new("/Users/eduardagejkin/Desktop/ruby/l4_Models/Student_YAML/students.yaml")
 yaml_test.add_student(stud1)
 yaml_test.update_student(4, stud2)

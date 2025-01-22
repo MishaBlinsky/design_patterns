@@ -1,6 +1,6 @@
 require_relative 'student_list_JSON.rb'
-stud1 = Student.new( "id": 7, "first_name": "Morales", "last_name": "Miles", "date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
-stud2 = Student.new( "id": 8, "first_name": "Morales", "last_name": "Miles", "date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
+stud1 = Student.new( "id": 7, "first_name": "Morales", "last_name": "Miles", "birth_date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
+stud2 = Student.new( "id": 8, "first_name": "Morales", "last_name": "Miles", "birth_date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
 json_test = Students_list_JSON.new("/Users/eduardagejkin/Desktop/ruby/l4_Models/Student_JSON/students.json")
 json_test.add_student(stud1)
 json_test.update_student(4, stud2)

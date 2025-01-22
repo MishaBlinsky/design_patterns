@@ -1,15 +1,15 @@
 require 'date'
-require_relative 'student_base.rb'
+require_relative '../Student/student_base.rb'
 class Student < Student_base
-    attr_reader :last_name, :first_name, :patronymic, :phone, :telegram, :email, :date
+    attr_reader :last_name, :first_name, :patronymic, :phone, :telegram, :email, :birth_date
     include Comparable
-    def initialize(last_name: nil, first_name: nil, patronymic: nil, id: nil, phone: nil, telegram: nil, email: nil, git: nil, date: nil)
-        self.last_name = last_name
-        self.first_name = first_name
-        self.patronymic = patronymic
-        self.date = date
-        self.set_contacts(phone: phone, telegram: telegram, email: email)
-        super(id: id, git: git, contact: "#{phone || telegram || email || nil}")
+    def initialize(attributes = {})
+        self.last_name = attributes[:last_name] 
+        self.first_name = attributes[:first_name] 
+        self.patronymic = attributes[:patronymic]
+        self.birth_date = attributes[:birth_date]
+        self.set_contacts(phone: attributes[:phone], telegram: attributes[:telegram], email: attributes[:email])
+        super(id: attributes[:id], git: attributes[:git], contact: "#{attributes[:phone] || attributes[:telegram] || attributes[:email] || nil}")
     end
     def set_contacts(phone: nil, telegram: nil, email: nil)
         self.phone = phone if phone
@@ -18,10 +18,10 @@ class Student < Student_base
         self.contact = "#{@phone || @telegram || @email || nil}"
     end
     def to_s
-        "ID: #{@id || '-'}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Birth Date: #{@date || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
+        "ID: #{@id || '-'}, Last Name: #{@last_name}, First Name: #{@first_name}, Patronymic: #{@patronymic || 'not specified'}, Birth Date: #{@birth_date || 'not specified'}, Phone: #{@phone || 'not specified'}, Telegram: #{@telegram || 'not specified'}, E-Mail: #{@email || 'not specified'}, Git: #{@git || 'not specified'}"
     end
     def to_hash
-        { id: , first_name: self.first_name, last_name: self.last_name, patronymic: self.patronymic, date: self.date, phone: self.phone, telegram: self.telegram, email: self.email, git: self.git }
+        { id: , first_name: self.first_name, last_name: self.last_name, patronymic: self.patronymic, birth_date: self.birth_date, phone: self.phone, telegram: self.telegram, email: self.email, git: self.git }
     end
     def get_info
         "#{last_name_initials} | Git: #{self.git} | Contact: #{self.contact}"
@@ -32,7 +32,7 @@ class Student < Student_base
         return name
     end
     def <=>(anOther)
-        self.date <=> anOther.date
+        self.birth_date <=> anOther.birth_date
     end
     def last_name=(last_name)
         if Student.name_regex_valid?(last_name)
@@ -69,11 +69,11 @@ class Student < Student_base
             raise ArgumentError, "Incorrect git format: #{git}"
         end
     end
-    def date=(date)
-        if date.nil? || Student.date_regex_valid?(date)
-            @date = date
+    def birth_date=(birth_date)
+        if birth_date.nil? || Student.date_regex_valid?(birth_date)
+            @birth_date = birth_date
         else
-            raise ArgumentError, "Incorrect date format #{date}"    
+            raise ArgumentError, "Incorrect date format #{birth_date}"    
         end 
     end
     def self.name_regex_valid?(name)

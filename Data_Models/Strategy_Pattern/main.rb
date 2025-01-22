@@ -1,7 +1,7 @@
 require_relative 'Student_list_base.rb'
 require_relative 'file_json.rb'
 require_relative 'file_yaml.rb'
-stud1 = Student.new( "id": 7, "first_name": "Morales", "last_name": "Miles", "date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
+stud1 = Student.new( "id": 7, "first_name": "Morales", "last_name": "Miles", "birth_date": "2002-02-20", "telegram": "@spooder", "git": "abas-git" )
 list_test = Students_list_base.new("/Users/eduardagejkin/Desktop/ruby/l4_Models/Student_YAML/students.yaml", YAML_strategy)
 list_test.add_student(stud1)
 list_test.write

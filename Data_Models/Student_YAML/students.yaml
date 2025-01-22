@@ -3,7 +3,7 @@
   :first_name: Kirisame
   :last_name: Marisa
   :patronymic:
-  :date: '1970-01-01'
+  :birth_date: '1970-01-01'
   :phone:
   :telegram: "@magician"
   :email:
@@ -12,7 +12,7 @@
   :first_name: Morales
   :last_name: Miles
   :patronymic:
-  :date: '2002-02-20'
+  :birth_date: '2002-02-20'
   :phone:
   :telegram: "@spooder"
   :email:
@@ -21,7 +21,7 @@
   :first_name: Morales
   :last_name: Miles
   :patronymic:
-  :date: '2002-02-20'
+  :birth_date: '2002-02-20'
   :phone:
   :telegram: "@spooder"
   :email:
@@ -30,7 +30,7 @@
   :first_name: Hakurei
   :last_name: Reimu
   :patronymic:
-  :date: '1970-01-01'
+  :birth_date: '1970-01-01'
   :phone:
   :telegram: "@gimmemoney"
   :email:
@@ -39,7 +39,7 @@
   :first_name: Izayoi
   :last_name: Sakuya
   :patronymic:
-  :date: '1970-01-01'
+  :birth_date: '1970-01-01'
   :phone:
   :telegram: "@mistr00s"
   :email:
