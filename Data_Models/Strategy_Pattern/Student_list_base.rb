@@ -6,7 +6,7 @@ class Students_list_base
     self.students = read
   end
   def read(file_path=self.file_path)
-    @strategy.read(file_path)
+    @strategy.read(file_path).map { |data| Student.new(**data) }
   end
   def write(file_path=self.file_path, data=self.students.map(&:to_hash))
     @strategy.write(file_path, data)
